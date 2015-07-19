@@ -36,6 +36,8 @@ class PlaySoundsViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    //refered to the following link for general structure of this method
+    //http://stackoverflow.com/questions/25333140/swift-using-sound-effects-with-audioengine
     func playWithPitch(speed:Float) {
         
         resetAudio()

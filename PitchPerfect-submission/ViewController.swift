@@ -20,6 +20,18 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func record(sender: AnyObject) {
+        println("button pressed!")
+        recordingInProgress.hidden = false
+        stopButton.hidden = false
+        
+    }
 
+    @IBOutlet weak var recordingInProgress: UILabel!
+    @IBOutlet weak var stopButton: UIButton!
+    
+    @IBAction func stopRecording(sender: AnyObject) {
+        println("stopping")
+    }
 }
 

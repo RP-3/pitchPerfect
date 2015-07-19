@@ -5,10 +5,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Record Sounds View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="PitchPerfect_submission" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="RecordSoundsViewController" customModule="PitchPerfect_submission" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -26,8 +26,8 @@
                                     <action selector="record:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="NOo-JC-glJ"/>
                                 </connections>
                             </button>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recording" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u87-eH-CyD">
-                                <rect key="frame" x="121" y="365" width="79" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to Record" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u87-eH-CyD">
+                                <rect key="frame" x="106" y="365" width="108" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.30408653846153844" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -39,7 +39,6 @@
                                 </state>
                                 <connections>
                                     <action selector="stopRecording:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="e0e-Lq-0Bm"/>
-                                    <segue destination="h1H-6T-IPq" kind="push" id="4LV-bD-gK6"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -57,6 +56,7 @@
                     <connections>
                         <outlet property="recordingInProgress" destination="u87-eH-CyD" id="XN3-K6-Xw4"/>
                         <outlet property="stopButton" destination="9Ct-TS-tDq" id="uqe-zS-QUC"/>
+                        <segue destination="h1H-6T-IPq" kind="push" identifier="stopRecordingSegue" id="mie-hw-s96"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -66,7 +66,7 @@
         <!--Play Sounds View Controller-->
         <scene sceneID="vzD-7U-jZU">
             <objects>
-                <viewController id="h1H-6T-IPq" customClass="playSoundsViewController" customModule="PitchPerfect_submission" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="h1H-6T-IPq" customClass="PlaySoundsViewController" customModule="PitchPerfect_submission" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="LHn-Gn-en5"/>
                         <viewControllerLayoutGuide type="bottom" id="umQ-ll-bfI"/>
@@ -89,12 +89,27 @@
                                 <state key="normal" image="chipmunk">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="playChipmunk:" destination="h1H-6T-IPq" eventType="touchUpInside" id="yvc-ae-Cdz"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WhT-oB-GbP">
                                 <rect key="frame" x="204" y="373" width="100" height="100"/>
                                 <state key="normal" image="vader">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="playVader:" destination="h1H-6T-IPq" eventType="touchUpInside" id="ABF-W0-fma"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Ma-iU-vg8">
+                                <rect key="frame" x="204" y="143" width="100" height="100"/>
+                                <state key="normal" image="fast">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="playFast:" destination="h1H-6T-IPq" eventType="touchUpInside" id="Wzw-dz-qbe"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -104,14 +119,16 @@
                             <constraint firstItem="umQ-ll-bfI" firstAttribute="top" secondItem="07D-uu-ZOV" secondAttribute="bottom" constant="95" id="MBt-AC-rOZ"/>
                             <constraint firstItem="xrT-TN-Z3e" firstAttribute="leading" secondItem="ak4-TD-yDI" secondAttribute="leadingMargin" id="QPM-8j-mJE"/>
                             <constraint firstItem="umQ-ll-bfI" firstAttribute="top" secondItem="WhT-oB-GbP" secondAttribute="bottom" constant="95" id="Rg4-vD-wsu"/>
+                            <constraint firstItem="4Ma-iU-vg8" firstAttribute="top" secondItem="LHn-Gn-en5" secondAttribute="bottom" constant="79" id="XVM-Oe-oqd"/>
                             <constraint firstItem="xrT-TN-Z3e" firstAttribute="top" secondItem="LHn-Gn-en5" secondAttribute="bottom" constant="79" id="iCy-ui-chz"/>
+                            <constraint firstItem="4Ma-iU-vg8" firstAttribute="trailing" secondItem="ak4-TD-yDI" secondAttribute="trailingMargin" id="p55-hG-zyg"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="s1h-fu-qVR"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S0P-qc-Xp6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1101" y="453"/>
+            <point key="canvasLocation" x="1144" y="453"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="y7h-Jn-Qmz">
@@ -134,6 +151,7 @@
     </scenes>
     <resources>
         <image name="chipmunk" width="100" height="100"/>
+        <image name="fast" width="100" height="100"/>
         <image name="microphone" width="100" height="100"/>
         <image name="slow" width="100" height="100"/>
         <image name="stopButton" width="50" height="50"/>
